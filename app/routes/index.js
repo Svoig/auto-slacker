@@ -1,9 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var AS = require('../auto-slacker.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+	
+  AS.test();
+
+  res.render('index.hbs', { title: 'Auto-Slacker' });
+  
 });
 
 module.exports = router;
