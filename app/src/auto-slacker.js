@@ -29,7 +29,7 @@ var AutoSlacker = (function(){
 			this.options.url = this.endPoint + "/api.test";
 
 			request(self.options, function(err, res, body) {
-				if(!error) {
+				if(!err) {
 				console.log(body);
 				} else console.log(("Error: ", err.message));
 			});
