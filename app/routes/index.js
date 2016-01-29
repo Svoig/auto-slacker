@@ -2,7 +2,10 @@
 
 var express = require('express');
 var router = express.Router();
-var AS = require('../auto-slacker.js');
+var AS = require('../src/auto-slacker.js');
+var PromiseGet = require('../src/promiseGet');
+
+const promiseGet = new PromiseGet();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -17,22 +20,17 @@ router.get('/list', function(req, res, next) {
 
 	console.log("Getting /list");
 
-  function* getNames(){
-  		console.log('Greetings from getNames!');
-		const chanNames = yield* AS.listChannels();
-		console.log("Greetings from getNames!",chanNames);
-		return chanNames;
-	};
+  	AS.listChannels().
+  	then(function(data){
+  		res.status = 200;
+  		res.render('index.hbs', {
+  			title: 'Auto-Slacker',
+  			list: data
+  		});
+  		return data;
+  	})
+  	.catch(promiseGet.handleError);
 
-	const chanNames = getNames();
-	//getNames.next();
-	console.log("Got the chanNames!", chanNames);
-	const channels = Object.keys(AS.channels);
-	
-	res.render('index.hbs', {
-		title: 'Auto-Slacker',
-		 list: chanNames
-	});
 })
 
 module.exports = router;
