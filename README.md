@@ -1,2 +1,2 @@
 # auto-slacker
-A Slackit clone.
+A Slackin clone.

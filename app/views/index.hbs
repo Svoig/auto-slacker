@@ -1,1 +1,9 @@
 <h1>Welcome to {{title}}</h1>
+
+<p>Available Channels: 
+	<ul>
+	{{#each list}}	
+		<li> {{ this }} </li>
+	{{/each}}
+	</ul>
+</p>
