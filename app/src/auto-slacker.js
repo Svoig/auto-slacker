@@ -41,8 +41,11 @@ var AutoSlacker = (function(){
 			var channels, chanNames;
 			
 			const self = this;
-			//Slack API requies a token parameter for channels.list
+
+			//Set the options before we instantiate promiseGet,
+			// which needs options to handle requests
 			this.options.url = this.endPoint + "/channels.list" + this.tokenParam;
+
 
 			const promiseGet = new PromiseGet(self.options)
 
