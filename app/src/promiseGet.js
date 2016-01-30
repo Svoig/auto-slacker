@@ -11,7 +11,29 @@ const PromiseGet = (function() {
 			console.log(`There was an error: ${err.message}`);
 		};
 
-		this.grab = function(url) {
+		this.post = function(value) {
+			const self = this;
+
+			const promise = new Promise(function(resolve, reject) {
+				request(self.options, function(err, req, res) {
+					if (err) {
+						throw new Error(err.message);
+					} else {
+						resolve(JSON.parse(res));
+					}
+				});
+			});
+
+			promise.then(function(data) {
+				console.log("The post was made, gave response ", data);
+			});
+
+			promise.catch(self.handleError);
+
+			return promise;
+		};
+
+		this.grab = function() {
 			const self = this;
 
 			const promise = new Promise(function(resolve, reject) {

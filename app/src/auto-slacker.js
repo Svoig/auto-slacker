@@ -18,7 +18,8 @@ var AutoSlacker = (function(){
 
 		//For easy requests
 		this.options = {
-				method: "GET"
+				method: "GET",
+
 		};
 
 		//Test to make sure the API is responding 
@@ -59,7 +60,27 @@ var AutoSlacker = (function(){
 			})
 			.catch(promiseGet.handleError);
 
-		}
+		};
+
+		this.postMessage = function(msg) {
+
+			const self = this;
+
+			console.log("postMessage received data: ", msg);
+
+			const msgParam = "&text=" + msg;
+
+			const chanParam = "&channel=C0K3TPXHN";
+
+			self.options.method = "POST";
+			self.options.contentType = 'application/json';
+			self.options.url = self.endPoint + "/chat.postMessage" + self.tokenParam + msgParam + chanParam;
+			// self.options.headers = {value: 'application/x-www-form-urlencoded'};
+
+			const promiseGet = new PromiseGet(self.options);
+
+			return promiseGet.post(self.options);
+		};
 
 	}
 	return AutoSlacker;

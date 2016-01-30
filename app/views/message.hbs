@@ -1,0 +1,16 @@
+
+<h1>Welcome to {{title}}></title>
+
+<h2>Post a message to the #general channel</h2>
+
+{{#if message}}
+	<h2>Posted message: > {{message}} </h2>
+{{/if}}
+
+{{!-- Make sure to include a name for each input --}} 
+
+<form method="post" enctype="application/x-www-form-urlencoded">
+	<label for="postMessage">Type your message</label>
+	<input name="submitter" id="postMessage" type="text">
+	<input type="submit" value="Send!">
+</form>
