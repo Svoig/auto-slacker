@@ -32,6 +32,24 @@ router.get('/list', function(req, res, next) {
   	})
   	.catch(promiseGet.handleError);
 
-})
+});
+
+router.get('/message', function(req, res, next) {
+	//Get the channels, then render with the data you get back
+  	res.render('message.hbs', {
+  		title: 'Auto-Slacker'
+  	});
+});
+
+router.post('/message', function(req, res, next) {
+	console.log("/message received the request: ", req.body);
+	AS.postMessage(req.body.submitter)
+	.then(function(data) {
+		res.render('message.hbs', {
+		title: 'Auto-Slacker',
+		message: data.message.text
+		});
+	});
+});
 
 module.exports = router;
