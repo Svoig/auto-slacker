@@ -1,0 +1,19 @@
+<h1>Invite a user to {{teamName}}</h1>
+
+{{#unless error}}
+	{{#if invited}}
+		<h2>Invited user {{invited}} </h2>
+	{{else}}
+		<h2>Enter an email and we'll invite them!</h2>
+	{{/if}}
+{{else}}
+	<div id='error'>
+		<h2>Failed to invite user {{invited}} because: </h2>
+		<p>{{error}}</p>
+	</div>
+{{/unless}}
+
+<form method='post' enctype='application/x-www-form-urlencoded'>
+	<input name='invited' id='postInvite' type='text'>
+	<input type='submit' value='Send!'>
+</form>
