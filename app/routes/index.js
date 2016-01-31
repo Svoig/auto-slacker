@@ -52,4 +52,21 @@ router.post('/message', function(req, res, next) {
 	});
 });
 
+router.get('/invite', function(req, res, next) {
+  res.render('invite.hbs', {
+    teamName: AS.teamName
+  });
+});
+
+router.post('/invite', function(req, res, next) {
+  console.log('/invite received the request: ', req.body);
+  AS.inviteUser(req.body.inviter)
+  .then(function(data) {
+    res.render('invite.hbs', {
+      teamName: AS.teamName,
+      invited: req.body.inviter
+    });
+  });
+});
+
 module.exports = router;

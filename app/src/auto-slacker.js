@@ -11,6 +11,8 @@ const PromiseGet = require('./promiseGet');
 var AutoSlacker = (function(){
 	function AutoSlacker() {
 
+		this.teamName = "telavivtest";
+
 		this.endPoint = "https://slack.com/api";
 
 		//Needed for most API calls
@@ -76,6 +78,19 @@ var AutoSlacker = (function(){
 			self.options.contentType = 'application/json';
 			self.options.url = self.endPoint + "/chat.postMessage" + self.tokenParam + msgParam + chanParam;
 			// self.options.headers = {value: 'application/x-www-form-urlencoded'};
+
+			const promiseGet = new PromiseGet(self.options);
+
+			return promiseGet.post(self.options);
+		};
+
+		this.inviteUser = function(email) {
+			const self = this;
+
+			self.options.url = "https://" + self.teamName + ".slack.com/api/users.admin.invite?t=" + Date.now() + "&token=" + token + "&email=" + email;
+
+			self.options.contentType = "application/json";
+			self.options.method = "POST";
 
 			const promiseGet = new PromiseGet(self.options);
 

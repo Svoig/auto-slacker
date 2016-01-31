@@ -1,0 +1,12 @@
+<h1>Invite a user to {{teamName}}</h1>
+
+{{#if invited}}
+	<h2>Invited user {{invited}} </h2>
+{{else}}
+	<h2>Enter an email and we'll invite them!</h2>
+{{/if}}
+
+<form method='post' enctype='application/x-www-form-urlencoded'>
+	<input name='inviter' id='postInvite' type='text'>
+	<input type='submit' value='Send!'>
+</form>
