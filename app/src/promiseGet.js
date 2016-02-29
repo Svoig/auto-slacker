@@ -11,10 +11,13 @@ const PromiseGet = (function() {
 			console.log(`There was an error: ${err.message}`);
 		};
 
-		this.post = function(value) {
+		this.post = function() {
+			//NOT EVEN RUNNING!!!
+			console.log("In post");
 			const self = this;
 
 			const promise = new Promise(function(resolve, reject) {
+				console.log("In post, self.options is ", self.options);
 				request(self.options, function(err, req, res) {
 					if (err) {
 						throw new Error(err.message);
@@ -23,12 +26,6 @@ const PromiseGet = (function() {
 					}
 				});
 			});
-
-			promise.then(function(data) {
-				console.log("The post was made, gave response ", data);
-			});
-
-			promise.catch(self.handleError);
 
 			return promise;
 		};
@@ -42,16 +39,10 @@ const PromiseGet = (function() {
 					if (err) {
 						throw new Error(err.message);
 					} else {
-						resolve(JSON.parse(res).channels);
+						resolve(JSON.parse(res));
 					}
 				});
 			});
-
-		promise.then(function(data) {
-			console.log("The request promise was resolved with the value: ", data);
-		});
-
-		promise.catch(self.handleError);
 
 		return promise;
 		};

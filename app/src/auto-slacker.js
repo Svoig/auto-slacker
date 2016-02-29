@@ -40,8 +40,6 @@ var AutoSlacker = (function(){
 		};
 
 		this.listChannels = function() {
-			//Initialize some variables to store received data
-			var channels, chanNames;
 			
 			const self = this;
 
@@ -53,14 +51,17 @@ var AutoSlacker = (function(){
 			const promiseGet = new PromiseGet(self.options)
 
 			//Call the getWithGen method to make a get request wrapped in a promise
-			return promiseGet.getWithGen().then(function(data) {
+			return promiseGet.grab().then(function(data) {
+				self.channels = data.channels;
 				//Then narrow the data to just the channel names
-				const chanNames = data.map(function(key) {
+				const chanNames = data.channels.map(function(key) {
 					return key.name;
 				});
 				return chanNames;
 			})
 			.catch(promiseGet.handleError);
+
+			return Promise.resolve(self.channels);
 
 		};
 
@@ -81,7 +82,53 @@ var AutoSlacker = (function(){
 
 			const promiseGet = new PromiseGet(self.options);
 
-			return promiseGet.post(self.options);
+			return promiseGet.post();
+		};
+
+		this.parseUserRes = function(msg) {
+
+		};
+
+		this.receiveMessage = function(msg) {
+			console.log("Received message ", msg);
+		};
+
+		this.confirmUser = function(user) {
+			const self = this;
+			let channel;
+
+			self.listChannels()
+			.then(function() {
+
+				const msg = `Hey, the user ${user} would like to join the team. Let them in?`;
+				console.log(msg);
+				self.channels.forEach(function(key) {
+					if(key.name === 'confirm-users') {
+						channel = key;
+						console.log("Found the confirm-users channel!");
+
+					}
+				});
+
+				self.options.url = self.endPoint + "/chat.postMessage" + self.tokenParam + "&channel=" + channel.id + "&text=" + msg;
+				self.options.method = "POST";
+				console.log("About to make a new PromiseGet and post!");
+
+				const promiseGet = new PromiseGet(self.options);
+				console.log("Made a new PromiseGet!", !!promiseGet);
+				console.log("In listChannels, promiseGet.post() returns: ", promiseGet.post());
+
+				const resolved = promiseGet.post()
+				.then(function(data) {
+					console.log("Posted! Got this: ", data);
+					return data;
+				});
+
+				return resolved;							
+			});
+
+
+			
 		};
 
 		this.inviteUser = function(email) {
@@ -94,7 +141,7 @@ var AutoSlacker = (function(){
 
 			const promiseGet = new PromiseGet(self.options);
 
-			return promiseGet.post(self.options);
+			return promiseGet.post();
 		};
 
 	}

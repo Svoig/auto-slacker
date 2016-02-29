@@ -61,33 +61,42 @@ router.get('/invite', function(req, res, next) {
 
 router.post('/invite', function(req, res, next) {
   console.log('/invite received the request: ', req.body);
-
-  AS.inviteUser(req.body.invited)
+  console.log("Testing... AS.confirmUser() is: ", AS.confirmUser(req.body.invited));
+  AS.confirmUser(req.body.invited)
   .then(function(data) {
-    if(res.ok != true) {
-      res.status(500);
-      console.log("Invite returned error: ", data.error);
+    console.log("Made it into the then of confirmUser in index.js");
+    AS.inviteUser(req.body.invited)
+    .then(function(data) {
+      if(res.ok != true) {
+        res.status(500);
+        console.log("Invite returned error: ", data.error);
 
-      if(data.error === 'already_in_team') {  
+        if(data.error === 'already_in_team') {  
+          res.render('invite.hbs', {
+            teamName: AS.teamName,
+            error: "User is already in the team"
+          });
+        } else if(data.error === 'already_invited') {
+          res.render('invite.hbs', {
+            teamName: AS.teamName,
+            error: "User has already been invited to this team"
+          });
+        }
+
+      } else {
         res.render('invite.hbs', {
           teamName: AS.teamName,
-          error: "User is already in the team"
-        });
-      } else if(data.error === 'already_invited') {
-        res.render('invite.hbs', {
-          teamName: AS.teamName,
-          error: "User has already been invited to this team"
+          invited: req.body.invited
         });
       }
+    })
 
-    } else {
-      res.render('invite.hbs', {
-        teamName: AS.teamName,
-        invited: req.body.invited
-      });
-    }
   })
   .catch(promiseGet.handleError);
+});
+
+router.get('/confirm', function(req, res, next) {
+
 });
 
 module.exports = router;
