@@ -12,10 +12,8 @@ const PromiseGet = (function() {
 		};
 
 		this.post = function() {
-			//NOT EVEN RUNNING!!!
-			console.log("In post");
 			const self = this;
-
+			
 			const promise = new Promise(function(resolve, reject) {
 				console.log("In post, self.options is ", self.options);
 				request(self.options, function(err, req, res) {

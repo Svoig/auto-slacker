@@ -16,6 +16,23 @@ router.get('/', function(req, res, next) {
   
 });
 
+router.get('/test', function(req, res, next) {
+  let returned;
+
+  const promise = new Promise(function(resolve, reject) {
+    resolve(AS.confirmUser('rogerbutt@doom.com'));
+  })
+  .then(function(data) {
+    console.log("/test got data ", data);
+  });
+  /*AS.confirmUser('rogerbutt@doom.com')
+  .then(function(data) {
+    returned = data;
+  });*/
+  console.log(returned);
+  console.log("AS.confirmUser returns: ", returned);
+})
+
 router.get('/list', function(req, res, next) {
 
 	console.log("Getting /list");
@@ -61,7 +78,7 @@ router.get('/invite', function(req, res, next) {
 
 router.post('/invite', function(req, res, next) {
   console.log('/invite received the request: ', req.body);
-  console.log("Testing... AS.confirmUser() is: ", AS.confirmUser(req.body.invited));
+
   AS.confirmUser(req.body.invited)
   .then(function(data) {
     console.log("Made it into the then of confirmUser in index.js");

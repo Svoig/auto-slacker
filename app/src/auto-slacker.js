@@ -94,41 +94,41 @@ var AutoSlacker = (function(){
 		};
 
 		this.confirmUser = function(user) {
+
 			const self = this;
 			let channel;
 
-			self.listChannels()
-			.then(function() {
+			const promise = new Promise(function(resolve, reject) {
 
-				const msg = `Hey, the user ${user} would like to join the team. Let them in?`;
-				console.log(msg);
-				self.channels.forEach(function(key) {
-					if(key.name === 'confirm-users') {
-						channel = key;
-						console.log("Found the confirm-users channel!");
+				self.listChannels()
+				.then(function() {
 
-					}
+					const msg = `Hey, the user ${user} would like to join the team. Let them in?`;
+					console.log(msg);
+					self.channels.forEach(function(key) {
+						if(key.name === 'confirm-users') {
+							channel = key;
+							console.log("Found the confirm-users channel!");
+						}
+					});
+
+					self.options.url = self.endPoint + "/chat.postMessage" + self.tokenParam + "&channel=" + channel.id + "&text=" + msg;
+					self.options.method = "POST";
+					console.log("About to make a new PromiseGet and post!");
+
+					const promiseGet = new PromiseGet(self.options);
+					console.log("Made a new PromiseGet!", !!promiseGet);
+
+					resolve(promiseGet.post());
 				});
+					
+			}); 
 
-				self.options.url = self.endPoint + "/chat.postMessage" + self.tokenParam + "&channel=" + channel.id + "&text=" + msg;
-				self.options.method = "POST";
-				console.log("About to make a new PromiseGet and post!");
+			promise.then = function(data) {
+				console.log("confirmUser promise resolved, now in the then");
+			};
 
-				const promiseGet = new PromiseGet(self.options);
-				console.log("Made a new PromiseGet!", !!promiseGet);
-				console.log("In listChannels, promiseGet.post() returns: ", promiseGet.post());
-
-				const resolved = promiseGet.post()
-				.then(function(data) {
-					console.log("Posted! Got this: ", data);
-					return data;
-				});
-
-				return resolved;							
-			});
-
-
-			
+			return promise;
 		};
 
 		this.inviteUser = function(email) {
