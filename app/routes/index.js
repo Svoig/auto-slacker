@@ -84,7 +84,7 @@ router.post('/invite', function(req, res, next) {
     console.log("Made it into the then of confirmUser in index.js");
     AS.inviteUser(req.body.invited)
     .then(function(data) {
-      if(res.ok != true) {
+      if(res.body != true && data.error != undefined) {
         res.status(500);
         console.log("Invite returned error: ", data.error);
 

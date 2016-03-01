@@ -9,11 +9,12 @@ const PromiseGet = (function() {
 
 		this.handleError = function(err) {
 			console.log(`There was an error: ${err.message}`);
+			console.log("Full error: ", error);
 		};
 
 		this.post = function() {
 			const self = this;
-			
+
 			const promise = new Promise(function(resolve, reject) {
 				console.log("In post, self.options is ", self.options);
 				request(self.options, function(err, req, res) {
@@ -24,6 +25,8 @@ const PromiseGet = (function() {
 					}
 				});
 			});
+
+			promise.catch(self.handleError);
 
 			return promise;
 		};

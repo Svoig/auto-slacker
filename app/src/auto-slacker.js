@@ -124,9 +124,9 @@ var AutoSlacker = (function(){
 					
 			}); 
 
-			promise.then = function(data) {
+			promise.then(function(data) {
 				console.log("confirmUser promise resolved, now in the then");
-			};
+			});
 
 			return promise;
 		};
