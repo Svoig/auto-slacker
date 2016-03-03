@@ -1,9 +1,10 @@
 "use strict";
 
-var express = require('express');
-var router = express.Router();
-var AS = require('../src/auto-slacker.js');
-var PromiseGet = require('../src/promiseGet');
+
+const express = require('express');
+const router = express.Router();
+const AS = require('../src/auto-slacker.js');
+const PromiseGet = require('../src/promiseGet');
 
 const promiseGet = new PromiseGet();
 
@@ -15,6 +16,23 @@ router.get('/', function(req, res, next) {
   res.render('index.hbs', { title: 'Auto-Slacker' });
   
 });
+
+router.get('/test', function(req, res, next) {
+  let returned;
+
+  const promise = new Promise(function(resolve, reject) {
+    resolve(AS.confirmUser('rogerbutt@doom.com'));
+  })
+  .then(function(data) {
+    console.log("/test got data ", data);
+  });
+  /*AS.confirmUser('rogerbutt@doom.com')
+  .then(function(data) {
+    returned = data;
+  });*/
+  console.log(returned);
+  console.log("AS.confirmUser returns: ", returned);
+})
 
 router.get('/list', function(req, res, next) {
 
@@ -62,9 +80,10 @@ router.get('/invite', function(req, res, next) {
 router.post('/invite', function(req, res, next) {
   console.log('/invite received the request: ', req.body);
 
+//Holding off on AS.confirmUser for now
   AS.inviteUser(req.body.invited)
   .then(function(data) {
-    if(res.ok != true) {
+    if(res.body != true && data.error != undefined) {
       res.status(500);
       console.log("Invite returned error: ", data.error);
 
@@ -88,6 +107,11 @@ router.post('/invite', function(req, res, next) {
     }
   })
   .catch(promiseGet.handleError);
+
+});
+
+router.get('/main', function(req, res, next) {
+  res.render("main.hbs");
 });
 
 module.exports = router;

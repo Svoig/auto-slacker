@@ -40,8 +40,6 @@ var AutoSlacker = (function(){
 		};
 
 		this.listChannels = function() {
-			//Initialize some variables to store received data
-			var channels, chanNames;
 			
 			const self = this;
 
@@ -53,14 +51,17 @@ var AutoSlacker = (function(){
 			const promiseGet = new PromiseGet(self.options)
 
 			//Call the getWithGen method to make a get request wrapped in a promise
-			return promiseGet.getWithGen().then(function(data) {
+			return promiseGet.grab().then(function(data) {
+				self.channels = data.channels;
 				//Then narrow the data to just the channel names
-				const chanNames = data.map(function(key) {
+				const chanNames = data.channels.map(function(key) {
 					return key.name;
 				});
 				return chanNames;
 			})
 			.catch(promiseGet.handleError);
+
+			return Promise.resolve(self.channels);
 
 		};
 
@@ -81,7 +82,70 @@ var AutoSlacker = (function(){
 
 			const promiseGet = new PromiseGet(self.options);
 
-			return promiseGet.post(self.options);
+			return promiseGet.post();
+		};
+
+		this.getMessages = function(chan) {
+			console.log("Running getMessages");
+			const self = this;
+
+			const fiveMinsAgo = Date.now() - 300000;
+
+			self.options.method = "GET";
+			self.options.url = self.endPoint + "/channels.history" + tokenParam + "&channel=" + chan + "&oldest=" + fiveMinsAgo + "&inclusive=1" + "&count=1";
+
+			const promiseGet = new PromiseGet(self.options);
+			console.log("Made a PromiseGet with self.options: ", self.options);
+			promiseGet.grab()
+			.then(function(data) {
+				console.log("getMessages received the data: ", data);
+			});
+		};
+
+		this.parseUserRes = function(msg) {
+
+		};
+
+		this.receiveMessage = function(msg) {
+			console.log("Received message ", msg);
+		};
+
+		this.confirmUser = function(user) {
+
+			const self = this;
+			let channel;
+
+			const promise = new Promise(function(resolve, reject) {
+
+				self.listChannels()
+				.then(function() {
+
+					const msg = `Hey, the user ${user} would like to join the team. Let them in?`;
+					console.log(msg);
+					self.channels.forEach(function(key) {
+						if(key.name === 'confirm-users') {
+							channel = key;
+							console.log("Found the confirm-users channel!");
+						}
+					});
+
+					self.options.url = self.endPoint + "/chat.postMessage" + self.tokenParam + "&channel=" + channel.id + "&text=" + msg;
+					self.options.method = "POST";
+					console.log("About to make a new PromiseGet and post!");
+
+					const promiseGet = new PromiseGet(self.options);
+					console.log("Made a new PromiseGet!", !!promiseGet);
+
+					resolve(promiseGet.post());
+				});
+					
+			}); 
+
+			promise.then(function(data) {
+				self.getMessages(channel);
+			});
+
+			return promise;
 		};
 
 		this.inviteUser = function(email) {
@@ -94,7 +158,7 @@ var AutoSlacker = (function(){
 
 			const promiseGet = new PromiseGet(self.options);
 
-			return promiseGet.post(self.options);
+			return promiseGet.post();
 		};
 
 	}
