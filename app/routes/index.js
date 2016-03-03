@@ -1,9 +1,10 @@
 "use strict";
 
-var express = require('express');
-var router = express.Router();
-var AS = require('../src/auto-slacker.js');
-var PromiseGet = require('../src/promiseGet');
+
+const express = require('express');
+const router = express.Router();
+const AS = require('../src/auto-slacker.js');
+const PromiseGet = require('../src/promiseGet');
 
 const promiseGet = new PromiseGet();
 
@@ -79,41 +80,38 @@ router.get('/invite', function(req, res, next) {
 router.post('/invite', function(req, res, next) {
   console.log('/invite received the request: ', req.body);
 
-  AS.confirmUser(req.body.invited)
+//Holding off on AS.confirmUser for now
+  AS.inviteUser(req.body.invited)
   .then(function(data) {
-    console.log("Made it into the then of confirmUser in index.js");
-    AS.inviteUser(req.body.invited)
-    .then(function(data) {
-      if(res.body != true && data.error != undefined) {
-        res.status(500);
-        console.log("Invite returned error: ", data.error);
+    if(res.body != true && data.error != undefined) {
+      res.status(500);
+      console.log("Invite returned error: ", data.error);
 
-        if(data.error === 'already_in_team') {  
-          res.render('invite.hbs', {
-            teamName: AS.teamName,
-            error: "User is already in the team"
-          });
-        } else if(data.error === 'already_invited') {
-          res.render('invite.hbs', {
-            teamName: AS.teamName,
-            error: "User has already been invited to this team"
-          });
-        }
-
-      } else {
+      if(data.error === 'already_in_team') {  
         res.render('invite.hbs', {
           teamName: AS.teamName,
-          invited: req.body.invited
+          error: "User is already in the team"
+        });
+      } else if(data.error === 'already_invited') {
+        res.render('invite.hbs', {
+          teamName: AS.teamName,
+          error: "User has already been invited to this team"
         });
       }
-    })
 
+    } else {
+      res.render('invite.hbs', {
+        teamName: AS.teamName,
+        invited: req.body.invited
+      });
+    }
   })
   .catch(promiseGet.handleError);
+
 });
 
-router.get('/confirm', function(req, res, next) {
-
+router.get('/main', function(req, res, next) {
+  res.render("main.hbs");
 });
 
 module.exports = router;

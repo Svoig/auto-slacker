@@ -85,6 +85,23 @@ var AutoSlacker = (function(){
 			return promiseGet.post();
 		};
 
+		this.getMessages = function(chan) {
+			console.log("Running getMessages");
+			const self = this;
+
+			const fiveMinsAgo = Date.now() - 300000;
+
+			self.options.method = "GET";
+			self.options.url = self.endPoint + "/channels.history" + tokenParam + "&channel=" + chan + "&oldest=" + fiveMinsAgo + "&inclusive=1" + "&count=1";
+
+			const promiseGet = new PromiseGet(self.options);
+			console.log("Made a PromiseGet with self.options: ", self.options);
+			promiseGet.grab()
+			.then(function(data) {
+				console.log("getMessages received the data: ", data);
+			});
+		};
+
 		this.parseUserRes = function(msg) {
 
 		};
@@ -125,7 +142,7 @@ var AutoSlacker = (function(){
 			}); 
 
 			promise.then(function(data) {
-				console.log("confirmUser promise resolved, now in the then");
+				self.getMessages(channel);
 			});
 
 			return promise;
