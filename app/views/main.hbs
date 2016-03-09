@@ -1,7 +1,7 @@
 <style>
 	body {
-	  background-color: #E3E4E8;
-	  background-image: -webkit-linear-gradient(#E3E4E8, #787FA8);
+	  background-color: #1E272A;
+	  background-image: url(https://upload.wikimedia.org/wikipedia/commons/f/f0/Hunter_tartan.gif);
 	  padding: 50px;
 	  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 	}
@@ -9,6 +9,44 @@
 	a {
 	  color: #FFFDF9;
 	}
+
+	.container {
+		position: absolute;
+		left: 300px;
+		margin-right: auto;
+		margin-left: auto;
+		top: 5em; 
+		text-align: center;
+		width: 400px;
+		height: 150px;
+		border-radius: 10px 10px 10px 10px;
+		border: 3px solid #FFDD1A;
+		z-index: 100;
+	}
+
+
+	.bg-bar {
+		height: 8000px;
+		width: 1000px;
+		position: relative;
+		left: 50%;
+		margin: -100px 0 0 -500px;
+	}
+
+	.glass {
+		position:absolute;
+		z-index: 50;
+		background-image: url(https://upload.wikimedia.org/wikipedia/commons/f/f0/Hunter_tartan.gif);
+		-webkit-filter: blur(5px);position: relative;
+		margin-right: auto;
+		margin-left: auto;
+		top: 5em; 
+		text-align: center;
+		width: 400px;
+		height: 150px;
+		border-radius: 10px 10px 10px 10px;
+	}
+
 
 	.page-header h1 {
 		padding: 0.2em;
@@ -20,7 +58,11 @@
 	}
 
 	.list ul {
+		top: -10px;
+		margin-right: 20px;
 		line-spacing: 2;
+		text-align: center;
+		right: 20px;
 	}
 
 	.list li {
@@ -38,26 +80,38 @@
 
 </style>
 
-<div class="page-header">
-	
-	<h1>Welcome to AutoSlacker!</h1>
 
-</div> 
+<div class ='bg-bar' id='sb-left'>
 
-<div class="list">
-	<ul class="feature-list">
+	<div class='container'>
+			
+			<h1 class='header'>Welcome to AutoSlacker!</h1>
 
-		<li class="feature">
-			<a href='../invite' class='dummy'>Request an invite</a>
-		</li>
+		<div class="list">
+			<ul class="feature-list">
 
-		<li class="feature">
-			<a href='../message' class='dummy'>Post a bot message</a>
-		</li>
+				<li class="feature">
+					<a href='../invite' class='dummy'>Request an invite</a>
+				</li>
 
-		<li class="feature">
-			<a href='../list' class='dummy'>See all available channels</a>
-		</li>
+				<li class="feature">
+					<a href='../message' class='dummy'>Post a bot message</a>
+				</li>
 
-	</ul>
+				<li class="feature">
+					<a href='../list' class='dummy'>See all available channels</a>
+				</li>
+
+			</ul>
+		</div>
+
+	</div>
+
+	<div class='glass'>
+
+	</div>
+
 </div>
+
+
+
