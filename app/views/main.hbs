@@ -1,8 +1,36 @@
 <style>
-/* General styles */
-#id {
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+/* Structure styles */
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+#wrapper {
+	min-height: 100%;
 	position: relative;
 }
+
+#header {
+	position: fixed;
+}
+
+#content {
+	padding-bottom: 100px;	/*Height of the footer */
+}
+
+#footer {
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
 
 a {
 	text-decoration: none;
@@ -21,7 +49,6 @@ a:visited {
 a:visited:hover {
 	color: #F2EBFD;
 }
-
 
 /*Navigation styling */
 
@@ -49,94 +76,141 @@ a:visited:hover {
 .jumbotron {
 	height: 100px;
 	width: 100px;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	margin: auto;
-	background-color: red;
+	z-index: 0;
+	border: 3px solid black;
+
+	/* Plaid styles - source: Divya Manian http://lea.verou.me/css3patterns/#madras */
+	background-color: hsl(34, 53%, 82%);
+background-image: repeating-linear-gradient(45deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,                  
+  hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
+  hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,                
+  hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
+  hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
+  hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 120px, hsla(197, 62%, 11%, 0.5) 120px, hsla(197, 62%, 11%, 0.5) 140px       
+  ),
+repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px, 
+  hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
+  hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,                
+  hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
+  hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
+  hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 140px, hsla(197, 62%, 11%, 0.5) 140px, hsla(197, 62%, 11%, 0.5) 160px       
+);
 }
 
 .title {
+	/*Positioning*/
 	height: 50px;
 	width: 50px;
-	position: absolute;
+	position: relative;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
 	background-color: white;
 }
 
-.container {
-	display: table;
-	border-collapse: collapse;
-	height: 100%;
-}
-.footer {
-	display: table-row;
-	vertical-align: bottom;
-	height: 1px;
+.title h1 {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	text-indent: 5px;
 }
 
+/* Footer */
+
+.contact {
+	background-color: #09070D;
+	height: 500px;
+}
+
+/*Conspiracy*/
+/*[tooltip]:before {
+	position:absolute;
+	left: 200px;
+	content: attr(tooltip);
+	opacity: 0;
+	background-color: white;
+	border: 1px solid red;
+}
+
+[tooltip]:hover:before {
+	opacity: 1;
+}*/
 
 </style>
 
-<div id='main'>
-	<div class='nav'>
-		<div class='nav-bar'>
-			<div class='flex-box'>
-				<ul class='nav-list'>
-					<li>
-						<a href="../list">Available Channels</a>
-					</li>
-					<li>
-						<a href="../message">Post a bot message</a>
-					</li>
-					<li>
-						<a href="../invite">Request an invite</a>
-					</li>
-					<li>
-						<a href="../test1">Test</a>
-					</li>
-				</ul>
+<div id='wrapper'>
+
+	<div id='header'>
+
+		<div class='nav'>
+			<div class='nav-bar'>
+				<div class='flex-box'>
+					<ul class='nav-list'>
+						<li>
+							<a href="../list">Available Channels</a>
+						</li>
+						<li>
+							<a href="../message">Post a bot message</a>
+						</li>
+						<li>
+							<a href="../invite">Request an invite</a>
+						</li>
+						<li>
+							<a href="../test1">Test</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class='jumbotron'>
-		<div class='title'>
-			<h1>AutoSlacker</h1>
+	<div id='content'>
+		</div>
+
+		<div class='jumbotron'>
+			<div class='title' tooltip='We want your money'>
+				<h1>AutoSlacker</h1>
+			</div>
+		</div>
+
+	</div>
+
+	<div id='footer'>
+		<div class='contact'>
+			<ul>
+				<li>
+					<a href="twitter.com/donsignor">
+						<div id='twitter'>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="linkedin.com/in/harrisonccole">
+						<div id='linkedin'>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="mailto:harrisonccole@gmail.com">
+						<div id='email'>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="github.com/svoig">
+						<div id='github'>
+						</div>
+					</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 
-	<div class='container'>
-		<div class='footer'>
-			<div class='contact'>
-				<ul>
-					<li>
-						<a href="twitter.com/donsignor">
-							<div id='twitter'>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="linkedin.com/in/harrisonccole">
-							<div id='linkedin'>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="mailto:harrisonccole@gmail.com">
-							<div id='email'>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="github.com/svoig">
-							<div id='github'>
-							</div>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
 </div>

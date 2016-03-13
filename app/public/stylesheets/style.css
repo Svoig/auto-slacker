@@ -1,0 +1,72 @@
+/* General styles */
+#id {
+	position: relative;
+}
+
+a {
+	text-decoration: none;
+	color: #B591EE;
+}
+
+a:hover {
+	color: #F2EBFD;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #6E6183;
+}
+
+a:visited:hover {
+	color: #F2EBFD;
+}
+
+
+/*Navigation styling */
+
+.nav {
+	width: 100%;
+	position: fixed;
+	top: -16px;
+	left: 0px;
+	z-index: 1000;
+}
+
+.nav-bar {
+	height: 50px;
+	background-color: #09070D;
+}
+
+.nav-list li{
+	display: inline;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+/*Jumbotron*/
+
+.jumbotron {
+	height: 100px;
+	width: 100px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background-color: red;
+}
+
+.title {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	background-color: white;
+}
+
+/* Footer */
+
+.contact {
+	background-color: #09070D;
+}
+
