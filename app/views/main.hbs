@@ -17,7 +17,8 @@ body {
 
 #header {
 	position: fixed;
-	width
+	width: 100%;
+	z-index: 9999;
 }
 
 #content {
@@ -53,6 +54,9 @@ a:visited:hover {
 	color: #6E6183;
 }
 
+li {
+	list-style: none;
+}
 
 /*Navigation styling */
 
@@ -179,7 +183,7 @@ repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px,
 			<div class='nav-bar'>
 				<ul class='nav-list'>
 					<li>
-						<a href="./">Home</a>
+						<a href="#">Home</a>
 					</li>
 					<li>
 						<a href="../list">Available channels</a>
@@ -189,9 +193,6 @@ repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px,
 					</li>
 					<li>
 						<a href="../invite">Request an invite</a>
-					</li>
-					<li>
-						<a href="../test">Test</a>
 					</li>
 				</ul>
 			</div>
