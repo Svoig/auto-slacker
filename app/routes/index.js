@@ -11,9 +11,18 @@ const promiseGet = new PromiseGet();
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	//Responds with {ok: true} if it's working
-  AS.test();
+  AS.test()
+  .then(function(data) {
+    let msg;
 
-  res.render('index.hbs', { title: 'Auto-Slacker' });
+    if(res.body.ok === "true") {
+      msg = "Everything is working properly!";
+    } else {
+      msg = "There was a problem communicating with Slack";
+    }
+    res.render('test.hbs', { response: msg });
+  });
+
   
 });
 

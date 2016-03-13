@@ -27,15 +27,28 @@ var AutoSlacker = (function(){
 		//Test to make sure the API is responding 
 		this.test = function() {
 			const self = this;
-
 			//Give the options object a url property before making the request
-			this.options.url = this.endPoint + "/api.test";
+			self.options.url = this.endPoint + "/api.test";
 
-			request(self.options, function(err, res, body) {
+			const promiseGet = new PromiseGet(self.options);
+
+			const promise = new Promise(function(resolve, reject) {
+
+				request(self.options, function(err, res, body) {
 				if(!err) {
 				console.log(body);
-				} else console.log(("Error: ", err.message));
+				resolve(body);
+				} else {
+					console.log(("Error: ", err.message));
+					reject(err);
+				}
+				});
+
 			});
+
+			promise.catch(promiseGet.handleError);
+
+			return promise;
 
 		};
 
