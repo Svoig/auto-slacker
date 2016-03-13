@@ -1,48 +1,286 @@
+
 <style>
-	body {
-		  background-color: #E3E4E8;
-		  background-image: -webkit-linear-gradient(#E3E4E8, #787FA8);
-		  padding: 50px;
-		  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-	}
 
-	a {
-	  color: #FFFDF9;
-	}
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
-	.page-header h1 {
-		padding: 0.2em;
-		font-size: 3em;
-	    text-align: center;
-		color: #061254;
-		padding-left: 1em;
-		margin-left: 50px;
-	}
+/* Structure styles */
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
 
-	.list ul {
-		line-spacing: 2;
-	}
+#wrapper {
+	min-height: 100%;
+	position: relative;
+}
 
-	.list li {
-		list-style: none;
-		font-size: 1.5em;
-	}
+#header {
+	position: fixed;
+	width: 100%;
+	z-index: 9999;
+}
 
-	.dummy {
-		text-decoration: none;
-	}
+#content {
+	padding-bottom: 200px;	/*Height of the footer */
+	padding-top: 100px;		/* Height of header */
+}
 
-	.dummy:visited {
-		color: #FFFDF9;
-	}
+#footer {
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+/* General styles */
+a {
+	text-decoration: none;
+	color: white;
+	font-family: "Open Sans", sans-serif;
+}
+
+a:hover {
+	color: #6E6183;
+}
+
+/*a:visited {
+	text-decoration: none;
+	color: #6E6183;
+}*/
+
+a:visited:hover {
+	color: #6E6183;
+}
+
+li {
+	list-style: none;
+}
+
+/*Navigation styling */
+
+.nav {
+	height: 50px;
+	width: 100%;
+	position: fixed;
+	top: -16px;
+	left: 0px;
+	z-index: 1000;
+}
+
+.nav-bar {
+	height: 25px;
+	width: 100%;
+	background-color: #09070D;
+	text-align: center;
+}
+
+
+.nav-list li{
+	display: inline;
+	width: 20%;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+/*Jumbotron*/
+
+.jumbotron {
+	height: 100px;
+	width: 100px;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 0;
+	border: 3px solid black;
+
+	/* Plaid styles - source: Divya Manian http://lea.verou.me/css3patterns/#madras */
+	background-color: hsl(34, 53%, 82%);
+background-image: repeating-linear-gradient(45deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,                  
+  hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
+  hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,                
+  hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
+  hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
+  hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 120px, hsla(197, 62%, 11%, 0.5) 120px, hsla(197, 62%, 11%, 0.5) 140px       
+  ),
+repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px, 
+  hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
+  hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,                
+  hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
+  hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
+  hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 140px, hsla(197, 62%, 11%, 0.5) 140px, hsla(197, 62%, 11%, 0.5) 160px       
+);
+}
+
+.title {
+	/*Positioning*/
+	height: 50px;
+	width: 50px;
+	position: relative;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background-color: white;
+}
+
+.title h1 {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	text-indent: 5px;
+}
+
+/* Footer */
+
+#footer h3 {
+	position: ;
+	font-family: "Open Sans", sans-serif;
+	margin: auto;
+}
+
+.contact {
+	background-color: #09070D;
+	height: 50px;
+	text-align: center;
+}
+
+.contact li {
+	display: inline;
+}
+
+.contact li a {
+	display: inline;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+/* Content styles */
+
+.content-container {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	/* Text */
+	text-align: center;
+	font-family: "Open Sans", sans-serif;
+	/* Background */
+	background-color: hsl(34, 53%, 82%);
+background-image: repeating-linear-gradient(45deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,                  
+  hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
+  hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,                
+  hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
+  hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
+  hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 120px, hsla(197, 62%, 11%, 0.5) 120px, hsla(197, 62%, 11%, 0.5) 140px       
+  ),
+repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px, 
+  hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
+  hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,                
+  hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
+  hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
+  hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 140px, hsla(197, 62%, 11%, 0.5) 140px, hsla(197, 62%, 11%, 0.5) 160px       
+);
+}
+
+.hbs {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 30%;
+	bottom: 0;
+}
+
+
+
+/* Conspiracy */
+/*[tooltip]:before {
+	position:absolute;
+	left: 200px;
+	content: attr(tooltip);
+	opacity: 0;
+	background-color: white;
+	border: 1px solid red;
+}
+
+[tooltip]:hover:before {
+	opacity: 1;
+}*/
+
 </style>
 
-<h1>Welcome to {{title}}</h1>
+<div id='wrapper'>
 
-<p>Available Channels: 
-	<ul>
-	{{#each list}}	
-		<li> {{ this }} </li>
-	{{/each}}
-	</ul>
-</p>
+	<div id='header'>
+
+		<div class='nav'>
+			<div class='nav-bar'>
+				<ul class='nav-list'>
+					<li>
+						<a href="../main">Home</a>
+					</li>
+					<li>
+						<a href="#">Available channels</a>
+					</li>
+					<li>
+						<a href="../message">Post a bot message</a>
+					</li>
+					<li>
+						<a href="../invite">Request an invite</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id='content'>
+	</div>
+
+	<div class='content-container'>
+		<div class='hbs'>
+			<h1>Available Channels: 
+				<ul>
+					{{#each list}}	
+						<li> {{ this }} </li>
+					{{/each}}
+				</ul>
+			</h1>
+		</div>
+	</div>
+
+	<div id='footer'>
+		<h3>Contact</h3>
+		<div class='contact'>
+			<ul>
+				<!-- Eventually I want to add icons -->
+				<li>
+					<a href="twitter.com/donsignor">
+						Twitter
+					</a>
+				</li>
+				<li>
+					<a href="linkedin.com/in/harrisonccole">
+						LinkedIn
+					</a>
+				</li>
+				<li>
+					<a href="mailto:harrisonccole@gmail.com">
+						harrisonccole@gmail.com
+					</a>
+				</li>
+				<li>
+					<a href="github.com/svoig">
+						github.com/svoig
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</div>

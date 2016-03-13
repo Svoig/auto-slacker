@@ -62,5 +62,6 @@ app.use(function(err, req, res, next) {
 });
 
 
+const port = Number(process.env.PORT || 3000);
 
 module.exports = app;
