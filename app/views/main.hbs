@@ -17,10 +17,12 @@ body {
 
 #header {
 	position: fixed;
+	width
 }
 
 #content {
-	padding-bottom: 100px;	/*Height of the footer */
+	padding-bottom: 200px;	/*Height of the footer */
+	padding-top: 100px;		/* Height of header */
 }
 
 #footer {
@@ -31,28 +33,31 @@ body {
 	left: 0;
 }
 
-
+/* General styles */
 a {
 	text-decoration: none;
-	color: #B591EE;
+	color: white;
+	font-family: "Open Sans", sans-serif;
 }
 
 a:hover {
-	color: #F2EBFD;
-}
-
-a:visited {
-	text-decoration: none;
 	color: #6E6183;
 }
 
+/*a:visited {
+	text-decoration: none;
+	color: #6E6183;
+}*/
+
 a:visited:hover {
-	color: #F2EBFD;
+	color: #6E6183;
 }
+
 
 /*Navigation styling */
 
 .nav {
+	height: 50px;
 	width: 100%;
 	position: fixed;
 	top: -16px;
@@ -61,14 +66,18 @@ a:visited:hover {
 }
 
 .nav-bar {
-	height: 50px;
+	height: 25px;
+	width: 100%;
 	background-color: #09070D;
+	text-align: center;
 }
+
 
 .nav-list li{
 	display: inline;
-	margin-left: 10px;
-	margin-right: 10px;
+	width: 20%;
+	margin-left: 50px;
+	margin-right: 50px;
 }
 
 /*Jumbotron*/
@@ -124,9 +133,26 @@ repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px,
 
 /* Footer */
 
+#footer h3 {
+	position: ;
+	font-family: "Open Sans", sans-serif;
+	margin: auto;
+}
+
 .contact {
 	background-color: #09070D;
-	height: 500px;
+	height: 50px;
+	text-align: center;
+}
+
+.contact li {
+	display: inline;
+}
+
+.contact li a {
+	display: inline;
+	margin-left: 50px;
+	margin-right: 50px;
 }
 
 /*Conspiracy*/
@@ -151,22 +177,23 @@ repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px,
 
 		<div class='nav'>
 			<div class='nav-bar'>
-				<div class='flex-box'>
-					<ul class='nav-list'>
-						<li>
-							<a href="../list">Available Channels</a>
-						</li>
-						<li>
-							<a href="../message">Post a bot message</a>
-						</li>
-						<li>
-							<a href="../invite">Request an invite</a>
-						</li>
-						<li>
-							<a href="../test1">Test</a>
-						</li>
-					</ul>
-				</div>
+				<ul class='nav-list'>
+					<li>
+						<a href="./">Home</a>
+					</li>
+					<li>
+						<a href="../list">Available channels</a>
+					</li>
+					<li>
+						<a href="../message">Post a bot message</a>
+					</li>
+					<li>
+						<a href="../invite">Request an invite</a>
+					</li>
+					<li>
+						<a href="../test">Test</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -183,30 +210,28 @@ repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px,
 	</div>
 
 	<div id='footer'>
+		<h3>Contact</h3>
 		<div class='contact'>
 			<ul>
+				<!-- Eventually I want to add icons -->
 				<li>
 					<a href="twitter.com/donsignor">
-						<div id='twitter'>
-						</div>
+						Twitter
 					</a>
 				</li>
 				<li>
 					<a href="linkedin.com/in/harrisonccole">
-						<div id='linkedin'>
-						</div>
+						LinkedIn
 					</a>
 				</li>
 				<li>
 					<a href="mailto:harrisonccole@gmail.com">
-						<div id='email'>
-						</div>
+						harrisonccole@gmail.com
 					</a>
 				</li>
 				<li>
 					<a href="github.com/svoig">
-						<div id='github'>
-						</div>
+						github.com/svoig
 					</a>
 				</li>
 			</ul>
