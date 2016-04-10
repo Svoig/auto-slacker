@@ -64,4 +64,8 @@ app.use(function(err, req, res, next) {
 
 const port = Number(process.env.PORT || 3000);
 
+app.listen(port, function() {
+  console.log("Autoslacker is running on http://localhost: " + port);
+});
+
 module.exports = app;
