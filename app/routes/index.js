@@ -9,7 +9,7 @@ const PromiseGet = require('../src/promiseGet');
 const promiseGet = new PromiseGet();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/base', function(req, res, next) {
 	//Responds with {ok: true} if it's working
   AS.test()
   .then(function(data) {
