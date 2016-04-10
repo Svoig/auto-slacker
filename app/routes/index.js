@@ -119,7 +119,7 @@ router.post('/invite', function(req, res, next) {
 
 });
 
-router.get('/main', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render("main.hbs");
 });
 
