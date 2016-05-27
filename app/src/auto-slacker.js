@@ -11,7 +11,7 @@ const PromiseGet = require('./promiseGet');
 var AutoSlacker = (function(){
 	function AutoSlacker() {
 
-		this.teamName = "telavivtest";
+		this.teamName = "autoslacker";
 
 		this.endPoint = "https://slack.com/api";
 
@@ -86,7 +86,7 @@ var AutoSlacker = (function(){
 
 			const msgParam = "&text=" + msg;
 
-			const chanParam = "&channel=C0K3TPXHN";
+			const chanParam = "&channel=C1C6M69HQ";
 
 			self.options.method = "POST";
 			self.options.contentType = 'application/json';
